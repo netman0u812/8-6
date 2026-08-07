@@ -1,0 +1,62 @@
+Reconciled conflicting device data across multiple systems Reconciled
+conflicting device data across multiple systems
+
+Yes — confirmed, and worth presenting with real corroboration across
+three independent sources this time, not just one.
+
+Current live master (ent_network_device_master_v20260805.csv):
+
+Field:					Value:
+
+Hostname				RRI1FTDPL3P
+Device Type				Cisco Firepower NGFW with FTD
+Vendor / Model			Cisco
+Location				Woonsocket RI - RI One
+Location Type			DataCenter
+Heritage				CVS
+Location Source			IPAM_LPM (MEDIUM confidence)
+Management IP			10.18.106.83
+Status					Active
+Source File				FTC
+
+Independently corroborated by the older FTC report
+(2025_FTC_Network_Device_Report.xlsx): same IP, Location_Name =
+"Woonsocket, RI Data CTR 1 CVS Security" — real, independent agreement
+on the Woonsocket location. That report also has real detail the current
+master doesn't carry: model 4112 security appliance, software ASA
+9.14(1)150 / FTD 6.6.1, Device_Owner: IDS-Network-Security.
+
+One real thing worth flagging: in site_ip_report_4-13-26.csv (the raw
+NMS export), this device's own Location field shows "My
+Network\Unassigned" — meaning NetBrain never resolved a location for it
+at all. That's exactly why LOCATION_SOURCE in the master is IPAM_LPM,
+not NMS_FIELD — there was nothing usable from NetBrain to begin with,
+and IPAM had to fill the gap. Given today's investigation into
+IPAM_LPM's real reliability gaps, that's worth knowing rather than
+assuming the location came from a strong, direct signal.
+
+Is it in the new FTC report
+
+Investigated data discrepancies across multiple report sources
+Investigated data discrepancies across multiple report sources
+
+No — confirmed directly, not in the new Aug 5 file at all.
+
+That's a real, concrete instance of the broader pattern already found
+today: RRI1FTDPL3P is one of the 2,406 devices that disappeared between
+the March and August FTC reports — present in the old file, gone from
+the new one.
+
+Worth flagging precisely: the current NDM master's SOURCE_FILE says FTC
+and DATASET_VERSION says 20260805 — that reflects when the NDM row
+itself was last built, not that today's Aug 5 FTC file specifically
+confirmed this device. Its real FTC provenance traces back to the old
+March file; it's being carried forward in NDM via prior build history,
+not freshly reconfirmed by the current export.
+
+Given it's a real Firepower firewall (not a UPS or other device-class
+more plausibly explained by scope narrowing) and it's still Active in
+the live master, this fits the "FTC scan scope narrowed" explanation
+better than "device was decommissioned" — same conclusion as the broader
+1,645-device finding, just now traced down to one specific, real,
+individually-verified device.
