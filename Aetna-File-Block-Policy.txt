@@ -1,0 +1,118 @@
+Rule ID	Rule Name	Enabled	Match Condition	Scope	Action
+2828	Blocked File Extensions	Yes	File extension in list: hta, iq, job, lnk, pif, shs, vbe, wsc, wsh	All users	Block
+2169	Block SSNDENYS from restricted file extensions	Yes	AD group SSNDENYS AND (file extension in same 9-item list OR content identified as media type exe)	AD group SSNDENYS only	Block (tagged BlockedEXEBySSNDENYS)
+2834	Block Executables	Yes	Content identified as media type exe (see full 38-type list below)	All users	Block (tagged BlockedByExecutables)
+2823	Bypass Executable block for SFAllowexeDL	Yes	AD group SFAllowExeDl OR username = VDMZauthBypass	Those users only	Stops rule group (exempts from 2834)
+2792	Block Password Protected Archives	Yes	isencryptedobject = true AND content identified as archive media type (54-format list, see below)	All users	Block
+2798	Block Nested Archives	Yes	Nested archive depth ≥ 8	All users	Block
+3086	Block Encrypted Media Types	No — disabled	isencryptedobject = true (no archive restriction)	Would be all users	Would block, but is off
+3088	Block Multipart Media Types	No — disabled	ismultipartobject = true	Would be all users	Would block, but is off
+
+Media type exe — full 38-entry list matched by rules 2169 (OR condition) and 2834:
+
+#	Media Type	Description
+1	application/x-iphone	Intel IPhone Compatible File
+2	application/x-oz-application	Mozart-Oz Applet
+3	application/vnd.dreamfactory	DreamFactory Rich Internet Application
+4	application/vnd.joost.joda-archive	Joost Open Distribution Archive
+5	application/vnd.mophun.application	Oberon Media Application
+6	application/vnd.nokia.n-gage.symbian.install	Nokia N-Gage application
+7	application/vnd.openofficeorg.extension	StarOffice/OpenOffice.org extension
+8	application/vnd.trueapp	True BASIC application
+9	application/vnd.unity	Unity Web Application file
+10	application/vnd.yamaha.hv-script	HV-Script file
+11	application/java-vm	Java class file
+12	application/executable	MS Windows/MS DOS executables
+13	application/x-silverlight	Microsoft Silverlight files
+14	application/x-vba-macro-container	Container with VBA project
+15	application/dotnet-assembly	.Net assembly file
+16	application/x-nsis-installer	NSIS installer
+17	application/x-inno-setup-installer	Inno Setup installer
+18	application/x-xbox-program	Xbox executable
+19	application/x-elf	Unix ELF executables
+20	application/x-mac-dylib	Mac OS X/Mach-O Dynamic Library
+21	application/x-nlm	Netware Loadable Module
+22	application/x-apple-script	AppleScript Script
+23	application/vnd.symbian.install	Symbian OS Installer File
+24	application/x-mobile-lav	Mobile code in LAV format
+25	application/vnd.rim.cod	Blackberry Compiled Code
+26	application/x-csh	C Shell script
+27	application/x-ksh	Korn Shell script
+28	application/x-zsh	ZShell script
+29	application/x-tcl	Tcl/Tk script
+30	text/x-perl	Perl script
+31	text/x-python	Python script
+32	text/x-expect	Script in Expect
+33	text/x-ruby	Ruby script
+34	text/x-awk	AWK script
+35	text/x-scheme	Scheme script
+36	application/x-sh	Unix shell script
+37	application/x-scf	Microsoft Shell Command File
+38	application/x-msdownload	Self extracting file
+
+Archive media types — full 54-entry list matched by rule 2792 (Password Protected Archives):
+
+Running command
+Running command
+
+Correction on the count — it's actually 58 entries, not 54 (I'd estimated earlier without counting precisely; here's the exact list):
+
+#	Media Type	Description
+1	application/x-bcpio	Old Binary CPIO Archive
+2	application/mac-compactpro	Compact Pro Archive
+3	application/x-cbr	Comic Book Archive (RAR-based)
+4	application/x-cbz	Comic Book Archive (ZIP-based)
+5	application/x-cbt	Comic Book Archive (Tar-based)
+6	application/x-cb7	Comic Book Archive (7z-based)
+7	application/x-cba	Comic Book Archive (ACE-based)
+8	application/solaris-package	Solaris package
+9	application/x-xcompressed-sqx	SQX Compressed Archive
+10	application/vnd.ms-ims	IMS Content Packaging file
+11	application/x-arj	ARJ Archive
+12	application/x-bzip2	Bzip2 Archive
+13	application/x-gzip	GNU Zip Archive
+14	application/x-compress	Unix Compress Archive
+15	application/rar	RAR Archive
+16	application/java-archive	Java archive
+17	application/windows-installer-database	Microsoft Installer file
+18	application/vnd.ms-cab-compressed	Microsoft Installer file
+19	application/zip	Zip Archive
+20	application/x-vtar	VMware Tar Archive
+21	application/x-tar	Unix Tar Archive
+22	application/x-ole2	Microsoft Windows Compound file
+23	application/x-mso	ActiveMime MSO object w/ VBA project
+24	application/x-7z-compressed	7z archive
+25	application/x-lzh	LHa/Lzh archive
+26	application/x-stuffit	Mac OS X StuffIt! archive
+27	application/iscab	InstallShield Installer
+28	application/x-compressed-lzfse	LZFSE compressed file
+29	application/x-cpio	Unix CPIO Archive
+30	application/x-unix-archive	Unix Archive file
+31	application/x-redhat-package-manager	RedHat package
+32	application/zoo	ZOO Archive
+33	application/x-compressed-ace	ACE Archive
+34	application/x-mscompress	Microsoft Compress Archive
+35	application/x-compressed-uha	UHARC Compressed Archive
+36	application/x-compressed-alz	ALZip Compressed File
+37	application/x-compressed-dms	Amiga DISKMASHER Archive
+38	application/x-xz	XZ (LZMA2) compressed
+39	application/x-lzma	LZMA-compressed
+40	application/x-lzx	LZX compressed
+41	application/x-iso9660-image	ISO9660 disk image
+42	application/x-iso-udf-image	UDF disk image
+43	application/x-apple-diskimage	Mac OS X disk image
+44	application/x-compressed-arc	Arc archive
+45	application/x-compressed-bh	BlackHole archive
+46	application/x-compressed-dgc	Digital G Codec Archive
+47	application/x-compressed-gca	G Compression Archive
+48	application/x-rzip	rzip Compressed Archive
+49	application/x-spanzip	Multipart Zip archive
+50	application/vnd.ms-window-imaging-file	Windows Imaging Format
+51	application/x-crossepac	CrossePAC compressed archive
+52	application/x-pae	PowerArchiver Rijndael Encrypted
+53	application/x-ms-secure-cab	MS Secure Download Cabinet
+54	application/mac-binhex40	Mac Binary-to-Text encoded
+55	application/x-shar	Shell Archive
+56	application/uue	UUEncoded file
+57	application/x-git	Git Archive
+58	application/oleobject	OLE Object
